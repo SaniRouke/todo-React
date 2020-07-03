@@ -5,13 +5,23 @@ export default class TaskList extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      items: [1,2,3]
+      data: props.data
     }
   }
 
+  onDelete = (currentID) => () => {
+    this.setState(({ data }) => ({
+      data: data.filter(({ id }) => currentID !== id)
+    }))
+  }
+
   render() {
-    const { items } = this.state
-    const list = items.map((item, i) => <Task description={item} key={i}/>)
+    const { data } = this.state
+    const list = data.map(({ label, id }) => <Task
+      description={label}
+      id={id}
+      key={id}
+      onDelete={this.onDelete} />)
     return (
       <ul className="todo-list">
         {list}

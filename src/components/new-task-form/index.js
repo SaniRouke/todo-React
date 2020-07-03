@@ -14,7 +14,6 @@ export default class NewTaskForm extends React.Component {
 
   render() {
     const { value } = this.state
-    console.log(value)
     return (
         <input
           className="new-todo"

@@ -1,26 +1,39 @@
 import React from 'react';
-import { formatDistanceToNow } from 'date-fns'
+import { formatDistanceToNow } from 'date-fns';
+import cn from 'classnames';
 
 export default class Task extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      
+      isChecked: false,
     }
   }
+  
+  handleChange = () => {
+    this.setState(({ isChecked }) => ({
+      isChecked: !isChecked
+    }))
+  }
+
   render() {
-    const { description } = this.props
+    const { isChecked } = this.state
+    const { description, id, onDelete } = this.props
     const time = formatDistanceToNow(new Date(2020, 6, 2, 21, 19))
+    const classes = cn({
+      completed: isChecked
+    })
+
     return (
-      <li className="completed">
+      <li className={classes}>
         <div className="view">
-          <input className="toggle" type="checkbox" />
+          <input className="toggle" type="checkbox" onChange={this.handleChange} checked={this.state.isChecked}/>
           <label>
             <span className="description">{ description }</span>
             <span className="created">created {time} ago</span>
           </label>
           <button className="icon icon-edit"></button>
-          <button className="icon icon-destroy"></button>
+          <button className="icon icon-destroy" onClick={onDelete(id)}></button>
         </div>
       </li>
     )
