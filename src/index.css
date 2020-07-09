@@ -168,6 +168,27 @@ body {
 	padding: 0;
 }
 
+.todo-list li.editing .editing-wrapper,
+.adding-wrapper {
+	display: flex;
+	margin: 0;
+}
+
+.todo-list li.editing .editing-wrapper button,
+.adding-wrapper button {
+	margin: 7px;
+	padding: 3px;
+	color: grey;
+	border: 2px solid grey;
+	transition: 0.1s;
+}
+
+.todo-list li.editing .editing-wrapper button:active,
+.adding-wrapper button:active {
+	color: black;
+	border-color: black;
+}
+
 .todo-list li.editing .edit {
 	display: block;
 	width: calc(100% - 43px);

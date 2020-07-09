@@ -14,8 +14,7 @@ export default class NewTaskForm extends React.Component {
     })
   }
 
-  clear = (e) => {
-    if (e.key !== 'Enter') return
+  clear = () => {
     this.setState({
       value: ''
     })
@@ -25,13 +24,14 @@ export default class NewTaskForm extends React.Component {
     const { value } = this.state
     const { addItem } = this.props
     return (
-      <input
-        className="new-todo"
-        placeholder="What needs to be done?"
-        autoFocus value={value}
-        onChange={this.handleInput}
-        onKeyDown={addItem(value)}
-        onKeyUp={this.clear} />
+      <form className='adding-wrapper' onSubmit={addItem(value, this.clear)}>
+        <input
+          className="new-todo"
+          placeholder="What needs to be done?"
+          autoFocus value={value}
+          onChange={this.handleInput} />
+        <button type='submit'>ADD</button>
+      </form>
     )
   }
 }

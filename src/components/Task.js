@@ -55,13 +55,15 @@ export default class Task extends React.Component {
           <button className="icon icon-edit" onClick={onEdit}></button>
           <button className="icon icon-destroy" onClick={onDelete}></button>
         </div>
-        {editing && <input
-          name='input'
-          type="text"
-          className="edit"
-          value={editValue}
-          onChange={this.handleChange}
-          onKeyUp={offEdit(id, editValue)} ></input>}
+        {editing && <form className='editing-wrapper' onSubmit={offEdit(id, editValue)}>
+          <input
+            name='input'
+            type="text"
+            className="edit"
+            value={editValue}
+            onChange={this.handleChange}/>
+          <button type='submit'>OK</button>
+        </form>}
       </li>
     )
   }

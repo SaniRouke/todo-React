@@ -46,7 +46,8 @@ export default class App extends React.Component {
   }
 
   offEdit = (currentId, val) => (e) => {
-    if (e.key !== 'Enter') return
+    e.preventDefault()
+    if (val === '') return
     this.setState(({ data }) => {
       const newData = data.map((item) => {
         const { editing, label, ...otherProps} = item
@@ -75,8 +76,9 @@ export default class App extends React.Component {
     })
   }
 
-  addItem = (val) => (e) => {
-    if (e.key !== 'Enter' || val === '') return
+  addItem = (val, clearCallback) => (e) => {
+    e.preventDefault()
+    if (val === '') return
     this.setState(({ data }) => {
       const newItem = {
         label: val,
@@ -85,7 +87,7 @@ export default class App extends React.Component {
         done: false,
         editing: false
       }
-      
+      clearCallback()
       return {
         data: [newItem, ...data]
       }
