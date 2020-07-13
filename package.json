@@ -57,6 +57,6 @@
     }
   },
   "lint-staged": {
-    "*.jsx": "eslint"
+    "*.jsx": "npm run lint:write"
   }
 }
