@@ -24,6 +24,7 @@ export default class App extends React.Component {
       data: props.data,
       activeFilter: 'all',
     };
+    const kek = 5;
   }
 
   onToggleDone = (currentId) => () => {
