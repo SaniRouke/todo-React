@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import cn from 'classnames'
 
 const TasksFilter = ({ filter, activeFilter }) => {
@@ -11,12 +12,15 @@ const TasksFilter = ({ filter, activeFilter }) => {
       selected: activeFilter === id
     })
     return <li key={id}>
-      <button className={classes} id={id}>{label}</button>
+      <button type='button' className={classes} id={id} onClick={filter}>{label}</button>
     </li>
   })
-
+  TasksFilter.propTypes = {
+    filter: PropTypes.func.isRequired,
+    activeFilter: PropTypes.string.isRequired
+  }
   return (
-    <ul className="filters" onClick={filter}>
+    <ul className="filters">
       {buttons}
     </ul>
   )
@@ -24,6 +28,12 @@ const TasksFilter = ({ filter, activeFilter }) => {
 
 export default class Footer extends React.Component {
   static TasksFilter = TasksFilter
+
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    clearAll: PropTypes.func.isRequired,
+    itemsLeft: PropTypes.func.isRequired,
+  }
   
   render() {
     const { children, clearAll, itemsLeft } = this.props
@@ -31,7 +41,7 @@ export default class Footer extends React.Component {
       <footer className="footer">
         <span className="todo-count">{itemsLeft()} items left</span>
         {children}
-        <button className="clear-completed" onClick={clearAll}>Clear completed</button>
+        <button type='button' className="clear-completed" onClick={clearAll}>Clear completed</button>
       </footer>
     )
   }
