@@ -22,8 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint ./src/**.jsx ./src/components/**.jsx",
-    "lint:write": "eslint --debug ./src/**.jsx ./src/components/**.jsx --fix"
+    "lint": "eslint ./src/**.jsx ./src/components/**.jsx --color",
+    "lint:write": "eslint --debug ./src/**.jsx ./src/components/**.jsx --fix --color"
   },
   "browserslist": {
     "production": [
@@ -57,6 +57,6 @@
     }
   },
   "lint-staged": {
-    "*.jsx": "npm run lint:write"
+    "*.{js,jsx}": "npm run lint:write"
   }
 }
