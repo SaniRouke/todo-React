@@ -5,7 +5,7 @@ export default class NewTaskForm extends React.Component {
   static propTypes = {
     addItem: PropsTypes.func.isRequired,
   };
-  
+
   constructor(props) {
     super(props);
     this.state = {

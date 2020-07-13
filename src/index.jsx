@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
 import uniqid from 'uniqid';
 import App from './components/App';
 
-const data = ["text1asd", "text2", "text3"].map((item) => ({
+const data = ['text1asd', 'text2', 'text3'].map((item) => ({
   label: item,
   id: uniqid(),
   time: Date.now(),
@@ -12,4 +12,4 @@ const data = ["text1asd", "text2", "text3"].map((item) => ({
   editing: false,
 }));
 
-ReactDOM.render(<App data={data} />, document.getElementById("root"));
+ReactDOM.render(<App data={data} />, document.getElementById('root'));
