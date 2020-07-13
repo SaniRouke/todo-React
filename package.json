@@ -57,8 +57,6 @@
     }
   },
   "lint-staged": {
-    "./src/*.jsx": [
-      "npm run lint"
-    ]
+    "*.jsx": "eslint"
   }
 }
