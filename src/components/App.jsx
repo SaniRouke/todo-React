@@ -97,12 +97,16 @@ export default class App extends React.Component {
 
   addItem = (val, clearCallback) => (event) => {
     event.preventDefault();
+    const minutes = event.target.minutesInput.value;
+    const seconds = event.target.secondsInput.value;
+    const date = new Date(0, 0, 1, 0, minutes, seconds);
     if (val === '') return;
     this.setState(({ data }) => {
       const newItem = {
         label: val,
         id: uniqid(),
         time: Date.now(),
+        timeTodo: date,
         done: false,
         editing: false,
       };

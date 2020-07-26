@@ -2,17 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Task from './Task';
 
-const TaskList = ({ data, onDelete, onToggleDone, onEdit, offEdit }) => {
-  const list = data.map((item) => (
-    <Task
-      key={item.id}
-      data={item}
-      onDelete={onDelete(item.id)}
-      onToggleDone={onToggleDone(item.id)}
-      onEdit={onEdit(item.id)}
-      offEdit={offEdit}
-    />
-  ));
+const TaskList = ({ data, ...props }) => {
+  const list = data.map((item) => <Task key={item.id} data={item} {...props} />);
   return <ul className="todo-list">{list}</ul>;
 };
 TaskList.propTypes = {
