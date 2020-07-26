@@ -36,6 +36,8 @@ export default class NewTaskForm extends React.Component {
   clear = () => {
     this.setState({
       value: '',
+      minutes: '',
+      seconds: '',
     });
   };
 
