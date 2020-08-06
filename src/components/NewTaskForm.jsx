@@ -1,68 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropsTypes from 'prop-types';
 
-export default class NewTaskForm extends React.Component {
-  static propTypes = {
-    addItem: PropsTypes.func.isRequired,
+export default function NewTaskForm({ addItem }) {
+  const [value, setValue] = useState('');
+  const [minutes, setMinutes] = useState('');
+  const [seconds, setSeconds] = useState('');
+
+  const clear = () => {
+    setValue('');
+    setMinutes('');
+    setSeconds('');
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
-      minutes: '',
-      seconds: '',
-    };
-  }
-
-  handleInput = (event) => {
-    this.setState({
-      value: event.target.value,
-    });
-  };
-
-  handleMinutes = (event) => {
-    this.setState({
-      minutes: event.target.value,
-    });
-  };
-
-  handleSeconds = (event) => {
-    this.setState({
-      seconds: event.target.value,
-    });
-  };
-
-  clear = () => {
-    this.setState({
-      value: '',
-      minutes: '',
-      seconds: '',
-    });
-  };
-
-  render() {
-    const { value, minutes, seconds } = this.state;
-    const { addItem } = this.props;
-    return (
-      <form className="new-todo-form" onSubmit={addItem(value, this.clear)}>
-        <input className="new-todo" placeholder="What needs to be done?" value={value} onChange={this.handleInput} />
-        <input
-          id="minutesInput"
-          className="new-todo-form__timer"
-          placeholder="Min"
-          value={minutes}
-          onChange={this.handleMinutes}
-        />
-        <input
-          id="secondsInput"
-          className="new-todo-form__timer"
-          placeholder="Sec"
-          value={seconds}
-          onChange={this.handleSeconds}
-        />
-        <button type="submit">ADD</button>
-      </form>
-    );
-  }
+  return (
+    <form className="new-todo-form" onSubmit={addItem(value, clear)}>
+      <input
+        className="new-todo"
+        placeholder="What needs to be done?"
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
+      />
+      <input
+        id="minutesInput"
+        className="new-todo-form__timer"
+        placeholder="Min"
+        value={minutes}
+        onChange={(event) => setMinutes(event.target.value)}
+      />
+      <input
+        id="secondsInput"
+        className="new-todo-form__timer"
+        placeholder="Sec"
+        value={seconds}
+        onChange={(event) => setSeconds(event.target.value)}
+      />
+      <button type="submit">ADD</button>
+    </form>
+  );
 }
+
+NewTaskForm.propTypes = {
+  addItem: PropsTypes.func.isRequired,
+};

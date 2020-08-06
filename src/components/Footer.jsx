@@ -26,25 +26,22 @@ const TasksFilter = ({ filter, activeFilter }) => {
   return <ul className="filters">{buttons}</ul>;
 };
 
-export default class Footer extends React.Component {
-  static TasksFilter = TasksFilter;
-
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    clearAll: PropTypes.func.isRequired,
-    itemsLeft: PropTypes.func.isRequired,
-  };
-
-  render() {
-    const { children, clearAll, itemsLeft } = this.props;
-    return (
-      <footer className="footer">
-        <span className="todo-count">{itemsLeft()} items left</span>
-        {children}
-        <button type="button" className="clear-completed" onClick={clearAll}>
-          Clear completed
-        </button>
-      </footer>
-    );
-  }
+export default function Footer({ children, clearAll, itemsLeft }) {
+  return (
+    <footer className="footer">
+      <span className="todo-count">{itemsLeft()} items left</span>
+      {children}
+      <button type="button" className="clear-completed" onClick={clearAll}>
+        Clear completed
+      </button>
+    </footer>
+  );
 }
+
+Footer.TasksFilter = TasksFilter;
+
+Footer.propTypes = {
+  children: PropTypes.node.isRequired,
+  clearAll: PropTypes.func.isRequired,
+  itemsLeft: PropTypes.func.isRequired,
+};
